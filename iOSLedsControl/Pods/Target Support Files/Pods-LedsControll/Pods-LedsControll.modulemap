@@ -1,0 +1,6 @@
+framework module Pods_LedsControll {
+  umbrella header "Pods-LedsControll-umbrella.h"
+
+  export *
+  module * { export * }
+}

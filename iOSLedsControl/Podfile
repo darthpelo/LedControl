@@ -1,0 +1,8 @@
+project 'LedsControll.xcodeproj'
+
+platform :ios, '10.0'
+
+target 'LedsControll' do
+    use_frameworks!
+    pod 'Moya', '~> 8.0'
+end
