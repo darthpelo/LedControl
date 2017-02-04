@@ -1,5 +1,10 @@
-import Vapor
+#if os(Linux)
 import Glibc
+#else
+import Darwin.C
+#endif
+
+import Vapor
 import SwiftyGPIO
 import SwiftGPIOLibrary
 
