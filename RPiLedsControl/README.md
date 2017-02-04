@@ -26,3 +26,4 @@ Everything happen inside the **main.swift** file in `/Sources/App/`.
 ```swift
 
 ```
+## 🌍 Web service configuration
