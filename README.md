@@ -1,5 +1,14 @@
 # LedsControl
-A Swift 3.0 Full Stack project: iOS application, web service and leds on a Raspberry Pi 
+![Swift_Logo](http://eclipsesource.com/blogs/wp-content/uploads/2014/06/Apple_Swift_Logo.png)
+
+A Swift 3.0 full stack project: iOS application, web service and I/O control on a Raspberry Pi. Everything in Swift.
+
+## 🏆 Purpose
+
+When in the summer of 2016 I discovered that some one started to deploy a Swift version for the Raspberry Pi 2/3, I decided to realize a real full stack project: 
+* A web service with Swift
+* A iOS mobile application in Swift
+* A software in Swift to control I/O on a Raspberry Pi
 
 ## 🔩 Components
 
@@ -19,4 +28,4 @@ RPiLedsControl [README](https://github.com/darthpelo/LedsControl/tree/develop/RP
 
 ## ✨ Finalr Result
 
-![Video](https://github.com/darthpelo/LedsControl/blob/master/Videos/video.mov)
+A [video](https://vimeo.com/202640110) that shows how I can turn on/off leds with my iPad and internet connection 😎
