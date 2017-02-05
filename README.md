@@ -16,3 +16,7 @@ RPiLedsControl [README](https://github.com/darthpelo/LedsControl/tree/develop/RP
 ### 3. 📱 iOS application
 
 [iOSLedsControl](https://github.com/darthpelo/LedsControl/tree/develop/iOSLedsControl)
+
+## ✨ Finalr Result
+
+![Video](https://github.com/darthpelo/LedsControl/blob/master/Videos/video.mov)
