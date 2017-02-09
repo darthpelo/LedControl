@@ -70,6 +70,7 @@ drop.run()
 ```
 
 ### 2. GPIO
+To contorl the Raspberry GPIO I used the open source [SwiftGPIOLibrary](https://github.com/darthpelo/SwiftGPIOLibrary)
 
 ```swift
 let gpioLib = GPIOLib.sharedInstance
@@ -107,3 +108,14 @@ func powerOff() {
 ```
 
 ## 🌍 Web service configuration
+
+For the purpose of this demo I configured only the development enviroment in `Config/development/server.json`:
+```json
+{
+	"http": {
+		"port": "$PORT:80",
+		"host": "192.168.192.16",
+		"securityLayer": "none"
+	}
+}
+```
