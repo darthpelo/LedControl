@@ -10,9 +10,11 @@ When in the summer of 2016 I discovered that some one started to deploy a Swift 
 * A iOS mobile application in Swift
 * A software in Swift to control I/O on a Raspberry Pi
 
+Finaly I found the time to create a first simple Swift full stack project 😎
+
 ## 🔩 Components
 
-### 1. 🤖 HW
+### 1. 🤖 Hardware
 
 Raspberry Pi 2, a demo board, wireds and leds.
 
@@ -20,12 +22,16 @@ Raspberry Pi 2, a demo board, wireds and leds.
 
 ### 2. 💡 Web Service and Leds control
 
-RPiLedsControl [README](https://github.com/darthpelo/LedsControl/tree/develop/RPiLedsControl)
+RPiLedsControl [README](https://github.com/darthpelo/LedsControl/tree/develop/RPiLedsControl) using **Vapor**.
 
 ### 3. 📱 iOS application
 
 [iOSLedsControl](https://github.com/darthpelo/LedsControl/tree/develop/iOSLedsControl)
 
+### 4. 🌍 Public IP
+
+An [easy & free](https://www.noip.com) service to make public the port 80 of your Raspberry PI. Remember that this is a simply demo, so I didn't implement any security... [be careful](http://www.welivesecurity.com/2016/10/24/10-things-know-october-21-iot-ddos-attacks/)!☠️
+
 ## ✨ Finalr Result
 
-A [video](https://vimeo.com/202640110) that shows how I can turn on/off leds with my iPad and internet connection 😎
+A [video](https://vimeo.com/202640110) that shows how I can turn on/off leds with my iPad and an internet connection 😎
