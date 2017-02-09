@@ -70,7 +70,7 @@ drop.run()
 ```
 
 ### 2. GPIO
-To contorl the Raspberry GPIO I used the open source [SwiftGPIOLibrary](https://github.com/darthpelo/SwiftGPIOLibrary)
+To control the Raspberry GPIO I used the open source [SwiftGPIOLibrary](https://github.com/darthpelo/SwiftGPIOLibrary)
 
 ```swift
 let gpioLib = GPIOLib.sharedInstance
