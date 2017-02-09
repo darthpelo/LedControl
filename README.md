@@ -1,7 +1,12 @@
-# LedsControl
+# Leds Control
 ![Swift_Logo](http://eclipsesource.com/blogs/wp-content/uploads/2014/06/Apple_Swift_Logo.png)
 
-A Swift 3.0 full stack project: iOS application, web service and I/O control on a Raspberry Pi. Everything in Swift.
+A Swift 3.0 full stack project to control remotely leds: 
+
+* iOS application, 
+* web service and I/O control on a Raspberry Pi. 
+
+Every part wrote in Swift.
 
 ## 🏆 Purpose
 
@@ -35,3 +40,4 @@ An [easy & free](https://www.noip.com) service to make public the port 80 of you
 ## ✨ Finalr Result
 
 A [video](https://vimeo.com/202640110) that shows how I can turn on/off leds with my iPad and an internet connection 😎
+![Test](https://github.com/darthpelo/LedsControl/blob/develop/Images/test.gif)
