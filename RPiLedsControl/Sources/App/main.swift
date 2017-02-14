@@ -8,6 +8,16 @@ import Vapor
 import SwiftyGPIO
 import SwiftGPIOLibrary
 
+extension Optional {
+	// `then` function executes the closure if there is some value
+	func then(_ handler: (Wrapped) -> Void) {
+		switch self {
+		case .some(let wrapped): return handler(wrapped)
+		case .none: break
+		}
+	}
+}
+
 enum Command: Int {
     case Zero
     case One
@@ -20,11 +30,15 @@ let list: [GPIOName] = [.P20, .P26]
 let ports = gpioLib.setupOUT(ports: list, for: .RaspberryPi2)
 
 func status(_ port: GPIO?) -> Int {
-    guard let port = port else {
-        return 0
-    }
-    
-    return port.value
+    // guard let port = port else {
+    //     return 0
+    // }
+    //
+    // return port.value
+
+    var value = 0
+    port.value.then { value = $0 }
+    return value
 }
 
 func yellow() {
@@ -59,7 +73,7 @@ drop.get("cmd", ":id") { request in
     guard let cmdId = request.parameters["id"]?.int else {
         throw Abort.badRequest
     }
-    
+
     switch(cmdId) {
     case Command.Zero.rawValue:
         powerOff()
@@ -70,7 +84,7 @@ drop.get("cmd", ":id") { request in
     default:
         throw Abort.badRequest
     }
-    
+
     return try JSON(node: [
         "version": "1.0.0",
         "command": "\(cmdId)",
