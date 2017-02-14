@@ -37,7 +37,7 @@ func status(_ port: GPIO?) -> Int {
     // return port.value
 
     var value = 0
-    port.value.then { value = $0 }
+    port.then{ result = $0.value }
     return value
 }
 
