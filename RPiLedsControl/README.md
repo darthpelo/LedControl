@@ -31,6 +31,11 @@ The route matches `/cmd/:id` where `:id` is an Int.
 
 For each valid get, the API returns a JSON with the `:id` and the status (on/off) of the two leds connected to the Raspberry Pi.
 
+So, how to switch on the led connected to BCM 20? Simple:
+`http://hostname:port/cmd/1`.
+This is the response:
+`{"command":"1","green":"1","version":"1.0.0","yellow":"1"}`
+
 ```swift
 let drop = Droplet()
 
@@ -69,7 +74,7 @@ drop.resource("posts", PostController())
 drop.run()
 ```
 
-### 2. GPIO
+### 2. 🚥 GPIO
 To control the Raspberry GPIO I used the open source [SwiftGPIOLibrary](https://github.com/darthpelo/SwiftGPIOLibrary)
 
 ```swift
@@ -126,36 +131,3 @@ As any other Vapor template, execute `vapor build` in the root folder of the pro
 
 To run the server using the port 80, at the moment, it is necessary to run first `sudo -i`, go to the project folder and execute `vapor run`.
 If you want to use a another port, for example to run the service on your private network, you can use `sudo vapor run`. It's still necessary to run Vapor with root privilege to pilot the Raspberry GPIO.
-
-## ⌨️ Commands
-
-So, how to switch on the led connected to BCM 20? Simple:
-`http://hostname:port/cmd/1`.
-
-A simple get, defined with this function:
-```swift
-drop.get("cmd", ":id") { request in
-    guard let cmdId = request.parameters["id"]?.int else {
-        throw Abort.badRequest
-    }
-
-    switch(cmdId) {
-    case Command.Zero.rawValue:
-        powerOff()
-    case Command.One.rawValue:
-        yellow()
-    case Command.Two.rawValue:
-        green()
-    default:
-        throw Abort.badRequest
-    }
-
-    return try JSON(node: [
-        "version": "1.0.0",
-        "command": "\(cmdId)",
-        "yellow": "\(status(ports[.P20]))",
-        "green": "\(status(ports[.P26]))"
-        ])
-}
-```
-The JSON in response gives you information about the leds status.
