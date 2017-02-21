@@ -30,12 +30,6 @@ let list: [GPIOName] = [.P20, .P26]
 let ports = gpioLib.setupOUT(ports: list, for: .RaspberryPi2)
 
 func status(_ port: GPIO?) -> Int {
-    // guard let port = port else {
-    //     return 0
-    // }
-    //
-    // return port.value
-
     var value = 0
     port.then{ value = $0.value }
     return value
@@ -92,7 +86,5 @@ drop.get("cmd", ":id") { request in
         "green": "\(status(ports[.P26]))"
         ])
 }
-
-drop.resource("posts", PostController())
 
 drop.run()
