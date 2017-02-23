@@ -25,7 +25,8 @@ enum MyService {
 
 // MARK: - TargetType Protocol Implementation
 extension MyService: TargetType {
-    var baseURL: URL { return URL(string: "http://darthpelo.myddns.me/")! }
+//    var baseURL: URL { return URL(string: "http://darthpelo.myddns.me/")! }
+    var baseURL: URL { return URL(string: "http://10.230.192.100")! }
     var path: String {
         switch self {
         case .zen:

@@ -15,12 +15,22 @@ class ViewController: UIViewController, ViewProtocol {
     
     lazy var presenter: Presenter = Presenter(view: self)
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.view.backgroundColor = StyleKitName.green
+        presenter.startUp()
+    }
+    
     @IBAction func yellowSwitchChanged(_ sender: Any) {
         presenter.yellowSwitch(isOn: yellowSwitch.isOn)
     }
     
     @IBAction func greenSwitchChanged(_ sender: Any) {
         presenter.greenSwitch(isOn: greenSwitch.isOn)
+    }
+    
+    func resetAllSwitches() {
+        greenSwitch.setOn(false, animated: true)
+        yellowSwitch.setOn(false, animated: true)
     }
 }
 

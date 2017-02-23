@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_LedsControllVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_LedsControllVersionString[];
+FOUNDATION_EXPORT double Pods_LedsControlVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_LedsControlVersionString[];
 

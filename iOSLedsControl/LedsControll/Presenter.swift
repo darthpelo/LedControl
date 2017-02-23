@@ -9,10 +9,20 @@
 import Foundation
 import Moya
 
-protocol ViewProtocol: class {}
+protocol ViewProtocol: class {
+    func resetAllSwitches()
+}
 
 struct Presenter {
     weak var view: ViewProtocol?
+    
+    func startUp() {
+        let provider: MoyaProvider<MyService>! = MoyaProvider<MyService>()
+        
+        provider.request(.off) { (result) in
+            BPLog(object: result)
+        }
+    }
     
     func yellowSwitch(isOn: Bool) {
         let provider: MoyaProvider<MyService>! = MoyaProvider<MyService>()
@@ -24,6 +34,7 @@ struct Presenter {
         } else {
             provider.request(.off) { (result) in
                 BPLog(object: result)
+                self.view?.resetAllSwitches()
             }
         }
     }
@@ -38,6 +49,7 @@ struct Presenter {
         } else {
             provider.request(.off) { (result) in
                 BPLog(object: result)
+                self.view?.resetAllSwitches()
             }
         }
     }

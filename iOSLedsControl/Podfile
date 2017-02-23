@@ -1,8 +1,8 @@
-project 'LedsControll.xcodeproj'
+project 'LedsControl.xcodeproj'
 
 platform :ios, '10.0'
 
-target 'LedsControll' do
+target 'LedsControl' do
     use_frameworks!
     pod 'Moya', '~> 8.0'
 end

@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		63E747E0AB65A4C38BA20AE0 /* Pods_LedsControll.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE497880C374105204C30AE7 /* Pods_LedsControll.framework */; };
+		4E60F26C05DB1705B6915BAA /* Pods_LedsControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AEE939FEE627C13E0D9DC4C /* Pods_LedsControl.framework */; };
+		D92F19F71E5EDEB2003CF413 /* StyleKitName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92F19F61E5EDEB2003CF413 /* StyleKitName.swift */; };
 		D9877D9A1E3CF95A00522250 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9877D991E3CF95A00522250 /* AppDelegate.swift */; };
 		D9877D9C1E3CF95A00522250 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9877D9B1E3CF95A00522250 /* ViewController.swift */; };
 		D9877D9F1E3CF95A00522250 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9877D9D1E3CF95A00522250 /* Main.storyboard */; };
@@ -20,8 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		037E1A15E4DFF94871F87BDD /* Pods-LedsControl.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LedsControl.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LedsControl/Pods-LedsControl.debug.xcconfig"; sourceTree = "<group>"; };
+		27862FEFFEF8C14A06299F08 /* Pods-LedsControl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LedsControl.release.xcconfig"; path = "Pods/Target Support Files/Pods-LedsControl/Pods-LedsControl.release.xcconfig"; sourceTree = "<group>"; };
+		7AEE939FEE627C13E0D9DC4C /* Pods_LedsControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LedsControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		825397604FC73C54E32B051F /* Pods-LedsControll.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LedsControll.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LedsControll/Pods-LedsControll.debug.xcconfig"; sourceTree = "<group>"; };
-		BE497880C374105204C30AE7 /* Pods_LedsControll.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LedsControll.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D92F19F61E5EDEB2003CF413 /* StyleKitName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKitName.swift; sourceTree = "<group>"; };
 		D9877D961E3CF95A00522250 /* LedsControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LedsControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9877D991E3CF95A00522250 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9877D9B1E3CF95A00522250 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -41,7 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63E747E0AB65A4C38BA20AE0 /* Pods_LedsControll.framework in Frameworks */,
+				4E60F26C05DB1705B6915BAA /* Pods_LedsControl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,7 +55,7 @@
 		2590515CB748EFD3D64E94CA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BE497880C374105204C30AE7 /* Pods_LedsControll.framework */,
+				7AEE939FEE627C13E0D9DC4C /* Pods_LedsControl.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -77,6 +81,7 @@
 		D9877D981E3CF95A00522250 /* LedsControl */ = {
 			isa = PBXGroup;
 			children = (
+				D92F19F61E5EDEB2003CF413 /* StyleKitName.swift */,
 				D9877D991E3CF95A00522250 /* AppDelegate.swift */,
 				D9877D9B1E3CF95A00522250 /* ViewController.swift */,
 				D9877D9D1E3CF95A00522250 /* Main.storyboard */,
@@ -97,6 +102,8 @@
 			children = (
 				825397604FC73C54E32B051F /* Pods-LedsControll.debug.xcconfig */,
 				F9D7804647CD1D8772ECA411 /* Pods-LedsControll.release.xcconfig */,
+				037E1A15E4DFF94871F87BDD /* Pods-LedsControl.debug.xcconfig */,
+				27862FEFFEF8C14A06299F08 /* Pods-LedsControl.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -200,7 +207,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LedsControll/Pods-LedsControll-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LedsControl/Pods-LedsControl-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E2ADE29DBE89E122B97FFA55 /* [CP] Embed Pods Frameworks */ = {
@@ -215,7 +222,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LedsControll/Pods-LedsControll-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LedsControl/Pods-LedsControl-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -231,6 +238,7 @@
 				D9ED27181E4534E300C5EC82 /* Function.swift in Sources */,
 				D9877D9C1E3CF95A00522250 /* ViewController.swift in Sources */,
 				D9877D9A1E3CF95A00522250 /* AppDelegate.swift in Sources */,
+				D92F19F71E5EDEB2003CF413 /* StyleKitName.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,7 +304,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -340,7 +348,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -351,7 +359,7 @@
 		};
 		D9877DA91E3CF95A00522250 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 825397604FC73C54E32B051F /* Pods-LedsControll.debug.xcconfig */;
+			baseConfigurationReference = 037E1A15E4DFF94871F87BDD /* Pods-LedsControl.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = GK5S624D99;
@@ -360,12 +368,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.alessioroberto.LedsControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		D9877DAA1E3CF95A00522250 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F9D7804647CD1D8772ECA411 /* Pods-LedsControll.release.xcconfig */;
+			baseConfigurationReference = 27862FEFFEF8C14A06299F08 /* Pods-LedsControl.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = GK5S624D99;
@@ -374,6 +383,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.alessioroberto.LedsControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
