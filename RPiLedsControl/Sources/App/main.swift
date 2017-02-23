@@ -74,7 +74,7 @@ drop.get("cmd", ":id") { request in
     }
 
     return try JSON(node: [
-        "version": "1.0.0",
+        "version": "1.0.3",
         "command": "\(cmdId)",
         "yellow": "\(gpioLib.status(ports[.P20]))",
         "green": "\(gpioLib.status(ports[.P26]))"
