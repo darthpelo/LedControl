@@ -18,10 +18,10 @@ extension Optional {
 	}
 }
 
-enum Command: Int {
-    case Zero
-    case One
-    case Two
+enum Command {
+    static let Zero = 0
+    static let One = 1
+    static let Two = 2
 }
 
 let gpioLib = GPIOLib.sharedInstance
@@ -29,14 +29,8 @@ let gpioLib = GPIOLib.sharedInstance
 let list: [GPIOName] = [.P20, .P26]
 let ports = gpioLib.setupOUT(ports: list, for: .RaspberryPi2)
 
-func status(_ port: GPIO?) -> Int {
-    var value = 0
-    port.then{ value = $0.value }
-    return value
-}
-
 func yellow() {
-    if (status(ports[.P20]) == 0) {
+    if (gpioLib.status(ports[.P20]) == 0) {
         gpioLib.switchOn(ports: [.P20])
     } else {
         gpioLib.switchOff(ports: [.P20])
@@ -44,7 +38,7 @@ func yellow() {
 }
 
 func green() {
-    if (status(ports[.P26]) == 0) {
+    if (gpioLib.status(ports[.P26]) == 0) {
         gpioLib.switchOn(ports: [.P26])
     } else {
         gpioLib.switchOff(ports: [.P26])
@@ -69,11 +63,11 @@ drop.get("cmd", ":id") { request in
     }
 
     switch(cmdId) {
-    case Command.Zero.rawValue:
+    case Command.Zero:
         powerOff()
-    case Command.One.rawValue:
+    case Command.One:
         yellow()
-    case Command.Two.rawValue:
+    case Command.Two:
         green()
     default:
         throw Abort.badRequest
@@ -82,8 +76,8 @@ drop.get("cmd", ":id") { request in
     return try JSON(node: [
         "version": "1.0.0",
         "command": "\(cmdId)",
-        "yellow": "\(status(ports[.P20]))",
-        "green": "\(status(ports[.P26]))"
+        "yellow": "\(gpioLib.status(ports[.P20]))",
+        "green": "\(gpioLib.status(ports[.P26]))"
         ])
 }
 
