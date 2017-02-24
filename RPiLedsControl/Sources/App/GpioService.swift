@@ -14,13 +14,13 @@ final class GpioService {
   private let ports = gpioLib.setupOUT(ports: list, for: .RaspberryPi2)
 
   var yellow: Int {
-    return gpioLib.status(ports[.P20]
+    return gpioLib.status(ports[.P20])
   }
 
   var green: Int {
-    return gpioLib.status(ports[.P26]
+    return gpioLib.status(ports[.P26])
   }
-  
+
   func switchYellow() {
       if (gpioLib.status(ports[.P20]) == 0) {
           gpioLib.switchOn(ports: [.P20])
