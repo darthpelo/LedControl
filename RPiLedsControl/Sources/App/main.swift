@@ -5,8 +5,7 @@ import Darwin.C
 #endif
 
 import Vapor
-import SwiftyGPIO
-import SwiftGPIOLibrary
+import GpioService
 
 extension Optional {
 	// `then` function executes the closure if there is some value
@@ -24,31 +23,6 @@ enum Command {
     static let Two = 2
 }
 
-let gpioLib = GPIOLib.sharedInstance
-// Setup pin 20 and 26 as output with value 0
-let list: [GPIOName] = [.P20, .P26]
-let ports = gpioLib.setupOUT(ports: list, for: .RaspberryPi2)
-
-func yellow() {
-    if (gpioLib.status(ports[.P20]) == 0) {
-        gpioLib.switchOn(ports: [.P20])
-    } else {
-        gpioLib.switchOff(ports: [.P20])
-    }
-}
-
-func green() {
-    if (gpioLib.status(ports[.P26]) == 0) {
-        gpioLib.switchOn(ports: [.P26])
-    } else {
-        gpioLib.switchOff(ports: [.P26])
-    }
-}
-
-func powerOff() {
-    gpioLib.switchOff(ports: list)
-}
-
 let drop = Droplet()
 
 drop.get { req in
@@ -62,13 +36,15 @@ drop.get("cmd", ":id") { request in
         throw Abort.badRequest
     }
 
+		let service = GpioService()
+
     switch(cmdId) {
     case Command.Zero:
-        powerOff()
+        service.powerOff()
     case Command.One:
-        yellow()
+        service.yellow()
     case Command.Two:
-        green()
+        service.green()
     default:
         throw Abort.badRequest
     }
@@ -76,8 +52,8 @@ drop.get("cmd", ":id") { request in
     return try JSON(node: [
         "version": "1.0.3",
         "command": "\(cmdId)",
-        "yellow": "\(gpioLib.status(ports[.P20]))",
-        "green": "\(gpioLib.status(ports[.P26]))"
+        "yellow": "\(service.yellow))",
+        "green": "\(service.green))"
         ])
 }
 
