@@ -5,7 +5,7 @@ import Darwin.C
 #endif
 
 import Vapor
-import GpioService
+//import GpioService
 
 extension Optional {
 	// `then` function executes the closure if there is some value
@@ -36,15 +36,15 @@ drop.get("cmd", ":id") { request in
         throw Abort.badRequest
     }
 
-		let service = GpioService()
+    let service = GpioService()
 
     switch(cmdId) {
     case Command.Zero:
         service.powerOff()
     case Command.One:
-        service.yellow()
+        service.switchYellow()
     case Command.Two:
-        service.green()
+        service.switchGreen()
     default:
         throw Abort.badRequest
     }
@@ -52,8 +52,8 @@ drop.get("cmd", ":id") { request in
     return try JSON(node: [
         "version": "1.0.3",
         "command": "\(cmdId)",
-        "yellow": "\(service.yellow))",
-        "green": "\(service.green))"
+        "yellow": "\(service.yellow)",
+        "green": "\(service.green)"
         ])
 }
 
