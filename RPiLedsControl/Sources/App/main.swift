@@ -36,6 +36,10 @@ drop.get("cmd", ":id") { request in
         service.switchYellow(Command.One)
     case Command.Two:
         service.switchYellow(Command.Two)
+		case Command.Three:
+			  service.switchGreen(Command.Three)
+		case Command.Four:
+				service.switchGreen(Command.Four)
     default:
         throw Abort.badRequest
     }
