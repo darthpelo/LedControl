@@ -5,6 +5,7 @@
 ## Build generated
 build/
 DerivedData/
+RPiLedsControl/Package/
 
 ## Various settings
 *.pbxuser
