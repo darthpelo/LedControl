@@ -25,12 +25,14 @@ final class GPIOService {
     return gpioLib.status(ports[.P26])
   }
 
-  func switchYellow() {
-      print("switchYellow: \(gpioLib.status(ports[.P20]))")
-      if (gpioLib.status(ports[.P20]) == 0) {
+  func switchYellow(_ cmd: Command) {
+    print("switchYellow: \(gpioLib.status(ports[.P20]))")
+      switch cmd {
+      case .One:
           gpioLib.switchOn(ports: [.P20])
-      } else {
+      case .Two:
           gpioLib.switchOff(ports: [.P20])
+      default:()
       }
   }
 

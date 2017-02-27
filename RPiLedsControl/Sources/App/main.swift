@@ -10,6 +10,8 @@ enum Command {
     static let Zero = 0
     static let One = 1
     static let Two = 2
+		static let Three = 3
+		static let Four = 4
 }
 
 let drop = Droplet()
