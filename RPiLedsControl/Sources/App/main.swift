@@ -33,9 +33,9 @@ drop.get("cmd", ":id") { request in
     case Command.Zero:
         service.powerOff()
     case Command.One:
-        service.switchYellow()
+        service.switchYellow(Command.One)
     case Command.Two:
-        service.switchGreen()
+        service.switchYellow(Command.Two)
     default:
         throw Abort.badRequest
     }
