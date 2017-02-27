@@ -15,6 +15,8 @@ enum Command {
 }
 
 let drop = Droplet()
+let service = GPIOService.sharedInstance
+service.setup()
 
 drop.get { req in
     return try drop.view.make("welcome", [
@@ -26,8 +28,6 @@ drop.get("cmd", ":id") { request in
     guard let cmdId = request.parameters["id"]?.int else {
         throw Abort.badRequest
     }
-
-    let service = GPIOService()
 
     switch(cmdId) {
     case Command.Zero:

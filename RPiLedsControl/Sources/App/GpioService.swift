@@ -1,20 +1,27 @@
 #if os(Linux)
-    import Glibc
+import Glibc
 #else
-    import Darwin.C
+import Darwin.C
 #endif
 
 import SwiftyGPIO
 import SwiftGPIOLibrary
 
 final class GPIOService {
+  class var sharedInstance: GPIOService {
+    struct Singleton {
+      static let instance = GPIOService()
+    }
+    return Singleton.instance
+  }
+
   private let gpioLib = GPIOLib.sharedInstance
 
   private var ports: [GPIOName: GPIO]
   private let list: [GPIOName] = [.P20, .P26]
 
-  init() {
-      self.ports = gpioLib.setupOUT(ports: [.P20, .P26], for: .RaspberryPi2)
+  func setup() {
+    self.ports = gpioLib.setupOUT(ports: [.P20, .P26], for: .RaspberryPi2)
   }
 
   var yellow: Int {
@@ -26,26 +33,26 @@ final class GPIOService {
   }
 
   func switchYellow(_ cmd: Int) {
-      switch cmd {
-      case Command.One:
-          gpioLib.switchOn(ports: [.P20])
-      case Command.Two:
-          gpioLib.switchOff(ports: [.P20])
-      default:()
-      }
+    switch cmd {
+    case Command.One:
+      gpioLib.switchOn(ports: [.P20])
+    case Command.Two:
+      gpioLib.switchOff(ports: [.P20])
+    default:()
+    }
   }
 
   func switchGreen(_ cmd: Int) {
     switch cmd {
     case Command.Three:
-        gpioLib.switchOn(ports: [.P26])
+      gpioLib.switchOn(ports: [.P26])
     case Command.Four:
-        gpioLib.switchOff(ports: [.P26])
+      gpioLib.switchOff(ports: [.P26])
     default:()
     }
   }
 
   func powerOff() {
-      gpioLib.switchOff(ports: list)
+    gpioLib.switchOff(ports: list)
   }
 }
