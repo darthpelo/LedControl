@@ -25,7 +25,7 @@ drop.get("cmd", ":id") { request in
         throw Abort.badRequest
     }
 
-    let service = GpioService()
+    let service = GPIOService()
 
     switch(cmdId) {
     case Command.Zero:

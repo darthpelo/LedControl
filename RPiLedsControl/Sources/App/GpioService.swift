@@ -26,6 +26,7 @@ final class GPIOService {
   }
 
   func switchYellow() {
+      print("switchYellow: \(gpioLib.status(ports[.P20]))")
       if (gpioLib.status(ports[.P20]) == 0) {
           gpioLib.switchOn(ports: [.P20])
       } else {
@@ -34,6 +35,7 @@ final class GPIOService {
   }
 
   func switchGreen() {
+      print("switchGreen: \(gpioLib.status(ports[.P26]))")
       if (gpioLib.status(ports[.P26]) == 0) {
           gpioLib.switchOn(ports: [.P26])
       } else {
