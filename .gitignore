@@ -5,6 +5,7 @@
 ## Build generated
 build/
 DerivedData/
+RPiLedsControl/Package/
 
 ## Various settings
 *.pbxuser
@@ -63,4 +64,6 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
+
+# Playground
 /MyPlayground.playground
