@@ -17,7 +17,7 @@ final class GPIOService {
 
   private let gpioLib = GPIOLib.sharedInstance
 
-  private var ports: [GPIOName: GPIO]
+  private var ports: [GPIOName: GPIO] = [:]
   private let list: [GPIOName] = [.P20, .P26]
 
   func setup() {
