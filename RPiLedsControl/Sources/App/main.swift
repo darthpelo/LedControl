@@ -4,17 +4,15 @@ import Glibc
 import Darwin.C
 #endif
 
+// MARK: - Darwin / Xcode Support
+#if os(OSX)
+    private var O_SYNC: CInt { fatalError("Linux only") }
+#endif
+
 import Vapor
 
-enum Command {
-    static let Zero = 0
-    static let One = 1
-    static let Two = 2
-		static let Three = 3
-		static let Four = 4
-}
-
 let drop = Droplet()
+
 let service = GPIOService.sharedInstance
 service.setup()
 
