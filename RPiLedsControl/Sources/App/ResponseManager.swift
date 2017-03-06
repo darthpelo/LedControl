@@ -7,6 +7,8 @@ import Darwin.C
 import Vapor
 
 func returnJson(forCommand cmd: Int) -> JSON? {
+  let service = GPIOService.sharedInstance
+  
   return try? JSON(node: [
       "version": "1.0.4",
       "command": "\(cmd)",

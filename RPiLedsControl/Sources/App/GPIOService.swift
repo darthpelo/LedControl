@@ -45,7 +45,24 @@ final class GPIOService {
     return gpioLib.status(ports[.P26])
   }
 
-  func switchYellow(_ cmd: Int) {
+  func execute(command: Int) throws {
+    switch(command) {
+    case Command.Zero:
+        powerOff()
+    case Command.One:
+        switchYellow(Command.One)
+    case Command.Two:
+        switchYellow(Command.Two)
+    case Command.Three:
+        switchGreen(Command.Three)
+    case Command.Four:
+        switchGreen(Command.Four)
+    default:
+        throw Abort.badRequest
+    }
+  }
+
+  fileprivate func switchYellow(_ cmd: Int) {
     switch cmd {
     case Command.One:
       gpioLib.switchOn(ports: [.P20])
@@ -55,7 +72,7 @@ final class GPIOService {
     }
   }
 
-  func switchGreen(_ cmd: Int) {
+  fileprivate func switchGreen(_ cmd: Int) {
     switch cmd {
     case Command.Three:
       gpioLib.switchOn(ports: [.P26])
@@ -65,7 +82,7 @@ final class GPIOService {
     }
   }
 
-  func powerOff() {
+  fileprivate func powerOff() {
     gpioLib.switchOff(ports: list)
   }
 }

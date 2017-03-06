@@ -29,7 +29,7 @@ drop.get("cmd", ":id") { request in
 
     try service.execute(command: cmdId)
 
-    guard let json = returnJson() else {
+    guard let json = returnJson(forCommand: cmdId) else {
       throw Abort.badRequest
     }
 
