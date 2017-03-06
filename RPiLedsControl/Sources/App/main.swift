@@ -27,31 +27,13 @@ drop.get("cmd", ":id") { request in
         throw Abort.badRequest
     }
 
-    switch(cmdId) {
-    case Command.Zero:
-        service.powerOff()
-    case Command.One:
-        service.switchYellow(Command.One)
-    case Command.Two:
-        service.switchYellow(Command.Two)
-		case Command.Three:
-			  service.switchGreen(Command.Three)
-		case Command.Four:
-				service.switchGreen(Command.Four)
-    default:
-        throw Abort.badRequest
+    try service.execute(command: cmdId)
+
+    guard let json = returnJson() else {
+      throw Abort.badRequest
     }
 
-    guard let json = returnJson() else { return "Internal server error" }
-    
     return json
-    
-    // return try JSON(node: [
-    //     "version": "1.0.3",
-    //     "command": "\(cmdId)",
-    //     "yellow": "\(service.yellow)",
-    //     "green": "\(service.green)"
-    //     ])
 }
 
 drop.run()
