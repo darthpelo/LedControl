@@ -42,12 +42,14 @@ drop.get("cmd", ":id") { request in
         throw Abort.badRequest
     }
 
-    return try JSON(node: [
-        "version": "1.0.3",
-        "command": "\(cmdId)",
-        "yellow": "\(service.yellow)",
-        "green": "\(service.green)"
-        ])
+    return returnJson()
+    
+    // return try JSON(node: [
+    //     "version": "1.0.3",
+    //     "command": "\(cmdId)",
+    //     "yellow": "\(service.yellow)",
+    //     "green": "\(service.green)"
+    //     ])
 }
 
 drop.run()
