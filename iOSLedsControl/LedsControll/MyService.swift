@@ -11,47 +11,51 @@ import Moya
 
 enum Leds: Int {
     case Off
-    case Yellow
-    case Green
+    case YellowOn
+    case YellowOff
+    case GreenOn
+    case GreenOff
 }
 
 enum MyService {
-    case zen
-    case yellow
-    case green
-    case off
-    case led(type: Leds, isOn: Bool)
+    case YellowOn
+    case YellowOff
+    case GreenOn
+    case GreenOff
+    case Off
+    case Led(type: Leds, isOn: Bool)
 }
 
 // MARK: - TargetType Protocol Implementation
 extension MyService: TargetType {
-//    var baseURL: URL { return URL(string: "http://darthpelo.myddns.me/")! }
-    var baseURL: URL { return URL(string: "http://10.230.192.100")! }
+    var baseURL: URL { return URL(string: "http://darthpelo.myddns.me/")! }
     var path: String {
         switch self {
-        case .zen:
-            return "/zen"
-        case .led(_, _):
+        case .Led(_, _):
             return "/led"
-        case .off:
+        case .Off:
             return "cmd/\(Leds.Off.rawValue)"
-        case .yellow:
-            return "cmd/\(Leds.Yellow.rawValue)"
-        case .green:
-            return "cmd/\(Leds.Green.rawValue)"
+        case .YellowOn:
+            return "cmd/\(Leds.YellowOn.rawValue)"
+        case .YellowOff:
+            return "cmd/\(Leds.YellowOff.rawValue)"
+        case .GreenOn:
+            return "cmd/\(Leds.GreenOn.rawValue)"
+        case .GreenOff:
+            return "cmd/\(Leds.GreenOff.rawValue)"
         }
     }
     var method: Moya.Method {
         switch self {
-        case .zen, .led, .yellow, .green, .off:
+        case .Led, .YellowOn, .YellowOff, .GreenOn, .GreenOff, .Off:
             return .get
         }
     }
     var parameters: [String: Any]? {
         switch self {
-        case .zen, .yellow, .green, .off:
+        case .YellowOn, .YellowOff, .GreenOn, .GreenOff, .Off:
             return nil
-        case .led(let type, let isOn):
+        case .Led(let type, let isOn):
             return ["type": type.rawValue, "isOn": isOn]
         }
     }
@@ -62,19 +66,19 @@ extension MyService: TargetType {
     
     var sampleData: Data {
         switch self {
-        case .zen, .off:
+        case .Off:
             return "Half measures are as bad as nothing at all.".utf8Encoded
-        case .yellow:
+        case .YellowOn, .YellowOff:
             return "Yellow".utf8Encoded
-        case .green:
+        case .GreenOn, .GreenOff:
             return "Green".utf8Encoded
-        case .led(let type, let isOn):
+        case .Led(let type, let isOn):
             return "{\"type\": \"\(type.rawValue)\", \"isOn\": \"\(isOn)\"}".utf8Encoded
         }
     }
     var task: Task {
         switch self {
-        case .zen, .led, .yellow, .green, .off:
+        case .Led, .YellowOn, .YellowOff, .GreenOn, .GreenOff, .Off:
             return .request
         }
     }

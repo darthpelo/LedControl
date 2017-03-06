@@ -19,7 +19,7 @@ struct Presenter {
     func startUp() {
         let provider: MoyaProvider<MyService>! = MoyaProvider<MyService>()
         
-        provider.request(.off) { (result) in
+        provider.request(.Off) { (result) in
             BPLog(object: result)
         }
     }
@@ -28,13 +28,12 @@ struct Presenter {
         let provider: MoyaProvider<MyService>! = MoyaProvider<MyService>()
         
         if isOn {
-            provider.request(.yellow) { (result) in
+            provider.request(.YellowOn) { (result) in
                 BPLog(object: result)
             }
         } else {
-            provider.request(.off) { (result) in
+            provider.request(.YellowOff) { (result) in
                 BPLog(object: result)
-                self.view?.resetAllSwitches()
             }
         }
     }
@@ -43,13 +42,12 @@ struct Presenter {
         let provider: MoyaProvider<MyService>! = MoyaProvider<MyService>()
         
         if isOn {
-            provider.request(.green) { (result) in
+            provider.request(.GreenOn) { (result) in
                 BPLog(object: result)
             }
         } else {
-            provider.request(.off) { (result) in
+            provider.request(.GreenOff) { (result) in
                 BPLog(object: result)
-                self.view?.resetAllSwitches()
             }
         }
     }
