@@ -42,7 +42,9 @@ drop.get("cmd", ":id") { request in
         throw Abort.badRequest
     }
 
-    return returnJson()
+    guard let json = returnJson() else { return "Internal server error" }
+    
+    return json
     
     // return try JSON(node: [
     //     "version": "1.0.3",

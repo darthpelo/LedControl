@@ -6,8 +6,8 @@ import Darwin.C
 
 import Vapor
 
-func returnJson() -> ResponseRepresentable {
-  return try JSON(node: [
+func returnJson() -> JSON? {
+  return try? JSON(node: [
       "version": "1.0.4"
       ])
 }
