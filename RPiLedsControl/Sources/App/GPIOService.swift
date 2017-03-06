@@ -20,6 +20,10 @@ enum Command {
 		static let Four = 4
 }
 
+enum GPIOError: Error {
+    case InternalError
+}
+
 final class GPIOService {
   class var sharedInstance: GPIOService {
     struct Singleton {
@@ -58,7 +62,7 @@ final class GPIOService {
     case Command.Four:
         switchGreen(Command.Four)
     default:
-        throw Abort.badRequest
+        throw GPIOError.InternalError
     }
   }
 
