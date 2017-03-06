@@ -9,7 +9,7 @@
 import Foundation
 import Moya
 
-enum Leds: Int {
+enum Led: Int {
     case Off
     case Yellow
     case Green
@@ -20,13 +20,13 @@ enum MyService {
     case yellow
     case green
     case off
-    case led(type: Leds, isOn: Bool)
+    case led(type: Led, isOn: Bool)
 }
 
 // MARK: - TargetType Protocol Implementation
 extension MyService: TargetType {
-//    var baseURL: URL { return URL(string: "http://darthpelo.myddns.me/")! }
     var baseURL: URL { return URL(string: "http://10.230.192.100")! }
+    
     var path: String {
         switch self {
         case .zen:
@@ -34,19 +34,21 @@ extension MyService: TargetType {
         case .led(_, _):
             return "/led"
         case .off:
-            return "cmd/\(Leds.Off.rawValue)"
+            return "cmd/\(Led.Off.rawValue)"
         case .yellow:
-            return "cmd/\(Leds.Yellow.rawValue)"
+            return "cmd/\(Led.Yellow.rawValue)"
         case .green:
-            return "cmd/\(Leds.Green.rawValue)"
+            return "cmd/\(Led.Green.rawValue)"
         }
     }
+    
     var method: Moya.Method {
         switch self {
         case .zen, .led, .yellow, .green, .off:
             return .get
         }
     }
+    
     var parameters: [String: Any]? {
         switch self {
         case .zen, .yellow, .green, .off:
@@ -72,6 +74,7 @@ extension MyService: TargetType {
             return "{\"type\": \"\(type.rawValue)\", \"isOn\": \"\(isOn)\"}".utf8Encoded
         }
     }
+    
     var task: Task {
         switch self {
         case .zen, .led, .yellow, .green, .off:
