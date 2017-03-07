@@ -68,10 +68,18 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="V1.1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XlJ-2t-vo9">
+                                <rect key="frame" x="138" y="527.5" width="44" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="XlJ-2t-vo9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LQ9-HZ-j7a"/>
                             <constraint firstItem="vTk-wN-XzB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PW5-i9-ZUj"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XlJ-2t-vo9" secondAttribute="bottom" constant="20" id="SFW-Kc-BZq"/>
                             <constraint firstItem="jGb-qg-Jg3" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ZpA-zf-aXe"/>
                             <constraint firstItem="jGb-qg-Jg3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerXWithinMargins" id="cG7-HM-lTa"/>
                             <constraint firstItem="vTk-wN-XzB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="32" id="sXl-nI-xYU"/>
