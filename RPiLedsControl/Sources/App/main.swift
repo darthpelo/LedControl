@@ -36,4 +36,12 @@ drop.get("cmd", ":id") { request in
     return json
 }
 
+drop.get("status") { request in
+  guard let json = returnJson(forCommand: nil) else {
+    throw Abort.badRequest
+  }
+
+  return json
+}
+
 drop.run()
