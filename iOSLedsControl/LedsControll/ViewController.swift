@@ -28,9 +28,17 @@ class ViewController: UIViewController, ViewProtocol {
         presenter.greenSwitch(isOn: greenSwitch.isOn)
     }
     
-    func resetAllSwitches() {
+    internal func resetAllSwitches() {
         greenSwitch.setOn(false, animated: true)
         yellowSwitch.setOn(false, animated: true)
+    }
+    
+    internal func yellowSwitch(isOn: Bool) {
+        yellowSwitch.setOn(isOn, animated: true)
+    }
+    
+    internal func greenSwitch(isOn: Bool) {
+        greenSwitch.setOn(isOn, animated: true)
     }
 }
 

@@ -29,14 +29,14 @@ func returnJson(forCommand cmd: Any?) -> JSON? {
     let service = GPIOService.sharedInstance
 
     return try? JSON(node: [
-        "version": "1.0.4",
+        "version": "1.1.0",
         "command": command,
         "yellow": "\(service.yellow)",
         "green": "\(service.green)"
         ])
   } catch {
     return try? JSON(node: [
-        "version": "1.0.4",
+        "version": "1.1.0",
         "command": "",
         "yellow": "\(service.yellow)",
         "green": "\(service.green)"

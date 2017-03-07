@@ -24,6 +24,7 @@ enum MyService {
     case GreenOff
     case Off
     case Led(type: Leds, isOn: Bool)
+    case Status
 }
 
 // MARK: - TargetType Protocol Implementation
@@ -43,19 +44,21 @@ extension MyService: TargetType {
             return "cmd/\(Leds.GreenOn.rawValue)"
         case .GreenOff:
             return "cmd/\(Leds.GreenOff.rawValue)"
+        case .Status:
+            return "status"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .Led, .YellowOn, .YellowOff, .GreenOn, .GreenOff, .Off:
+        case .Led, .YellowOn, .YellowOff, .GreenOn, .GreenOff, .Off, .Status:
             return .get
         }
     }
     
     var parameters: [String: Any]? {
         switch self {
-        case .YellowOn, .YellowOff, .GreenOn, .GreenOff, .Off:
+        case .YellowOn, .YellowOff, .GreenOn, .GreenOff, .Off, .Status:
             return nil
         case .Led(let type, let isOn):
             return ["type": type.rawValue, "isOn": isOn]
@@ -68,7 +71,7 @@ extension MyService: TargetType {
     
     var sampleData: Data {
         switch self {
-        case .Off:
+        case .Off, .Status:
             return "Half measures are as bad as nothing at all.".utf8Encoded
         case .YellowOn, .YellowOff:
             return "Yellow".utf8Encoded
@@ -81,7 +84,7 @@ extension MyService: TargetType {
     
     var task: Task {
         switch self {
-        case .Led, .YellowOn, .YellowOff, .GreenOn, .GreenOff, .Off:
+        case .Led, .YellowOn, .YellowOff, .GreenOn, .GreenOff, .Off, .Status:
             return .request
         }
     }
