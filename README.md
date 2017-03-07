@@ -37,7 +37,7 @@ RPiLedsControl [README](https://github.com/darthpelo/LedsControl/tree/develop/RP
 
 An [easy & free](https://www.noip.com) service to make public the port 80 of your Raspberry PI. Remember that this is a simply demo, so I didn't implement any security... [be careful](http://www.welivesecurity.com/2016/10/24/10-things-know-october-21-iot-ddos-attacks/)!☠️
 
-## ✨ Finalr Result
+## ✨ Final Result
 
 A [video](https://vimeo.com/202640110) that shows how I can turn on/off led with my iPad and an internet connection 😎
 ![Test](https://github.com/darthpelo/LedsControl/blob/develop/Images/test.gif)

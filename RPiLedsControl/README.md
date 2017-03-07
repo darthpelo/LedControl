@@ -26,11 +26,13 @@ Everything happen inside the **main.swift** file in `/Sources/App/`.
 
 ### 1. Web Service
 
-A simple web service with Vapor. For this first version I decided to use a simple *Routing Parameters* solution, to send the commands to turn on/off the led: `drop.get("cmd", ":id")`.
+The server-side it's developed in `main.swift` using a Vapor template. For this first version I decided to use a simple *Routing Parameters* solution, to send the commands to turn on/off the led: `drop.get("cmd", ":id")`.
 
-The route matches `/cmd/:id` where `:id` is an Int.
+The route matches `/cmd/:id` where `:id` is an Int and `/status`.
 
-For each valid get, the API returns a JSON with the `:id` and the status (on/off) of the two led connected to the Raspberry Pi.
+For each valid `cmd` get, the API returns a JSON with the `:id` and the status (on/off) of the two led connected to the Raspberry Pi.
+
+Same JSON result with the `status` request, but in this case no change to the led status.
 
 So, how to switch on the led connected to BCM 20? Simple:
 `http://hostname:port/cmd/1`.
@@ -40,76 +42,96 @@ This is the response:
 ```swift
 let drop = Droplet()
 
-drop.get { req in
-    return try drop.view.make("welcome", [
-        "message": drop.localization[req.lang, "welcome", "title"]
-        ])
-}
+let service = GPIOService.sharedInstance
+service.setup()
 
 drop.get("cmd", ":id") { request in
     guard let cmdId = request.parameters["id"]?.int else {
         throw Abort.badRequest
     }
 
-    switch(cmdId) {
-    case Command.Zero.rawValue:
-        powerOff()
-    case Command.One.rawValue:
-        yellow()
-    case Command.Two.rawValue:
-        green()
-    default:
-        throw Abort.badRequest
+    try service.execute(command: cmdId)
+
+    guard let json = returnJson(forCommand: cmdId) else {
+      throw Abort.badRequest
     }
 
-    return try JSON(node: [
-        "version": "1.0.0",
-        "command": "\(cmdId)",
-        "yellow": "\(status(ports[.P20]))",
-        "green": "\(status(ports[.P26]))"
-        ])
+    return json
 }
 
-drop.resource("posts", PostController())
+drop.get("status") { request in
+  guard let json = returnJson(forCommand: nil) else {
+    throw Abort.badRequest
+  }
+
+  return json
+}
 
 drop.run()
 ```
 
 ### 2. 🚥 GPIO
-To control the Raspberry GPIO I used the open source [SwiftGPIOLibrary](https://github.com/darthpelo/SwiftGPIOLibrary)
+To control the Raspberry GPIO I used the open source [SwiftGPIOLibrary](https://github.com/darthpelo/SwiftGPIOLibrary) and created a `GPIOService` class in `GPIOService.swift`:
 
 ```swift
-let gpioLib = GPIOLib.sharedInstance
-// Setup pin 20 and 26 as output with value 0
-let list: [GPIOName] = [.P20, .P26]
-let ports = gpioLib.setupOUT(ports: list, for: .RaspberryPi2)
+final class GPIOService {
+  private let gpioLib = GPIOLib.sharedInstance
 
-func status(_ port: GPIO?) -> Int {
-    guard let port = port else {
-        return 0
+  private var ports: [GPIOName: GPIO] = [:]
+  private let list: [GPIOName] = [.P20, .P26]
+
+  func setup() {
+    self.ports = gpioLib.setupOUT(ports: [.P20, .P26], for: .RaspberryPi2)
+  }
+
+  var yellow: Int {
+    return gpioLib.status(ports[.P20])
+  }
+
+  var green: Int {
+    return gpioLib.status(ports[.P26])
+  }
+
+  func execute(command: Int) throws {
+    switch(command) {
+    case Command.Zero:
+        powerOff()
+    case Command.One:
+        switchYellow(Command.One)
+    case Command.Two:
+        switchYellow(Command.Two)
+    case Command.Three:
+        switchGreen(Command.Three)
+    case Command.Four:
+        switchGreen(Command.Four)
+    default:
+        throw GPIOError.InternalError
     }
+  }
 
-    return port.value
-}
-
-func yellow() {
-    if (status(ports[.P20]) == 0) {
-        gpioLib.switchOn(ports: [.P20])
-    } else {
-        gpioLib.switchOff(ports: [.P20])
+  fileprivate func switchYellow(_ cmd: Int) {
+    switch cmd {
+    case Command.One:
+      gpioLib.switchOn(ports: [.P20])
+    case Command.Two:
+      gpioLib.switchOff(ports: [.P20])
+    default:()
     }
-}
+  }
 
-func green() {
-    if (status(ports[.P26]) == 0) {
-        gpioLib.switchOn(ports: [.P26])
-    } else {
-        gpioLib.switchOff(ports: [.P26])
+  fileprivate func switchGreen(_ cmd: Int) {
+    switch cmd {
+    case Command.Three:
+      gpioLib.switchOn(ports: [.P26])
+    case Command.Four:
+      gpioLib.switchOff(ports: [.P26])
+    default:()
     }
-}
+  }
 
-func powerOff() {
+  fileprivate func powerOff() {
     gpioLib.switchOff(ports: list)
+  }
 }
 ```
 
@@ -119,7 +141,7 @@ For the purpose of this demo I configured only the development environment in `C
 ```json
 {
 	"http": {
-		"port": "$PORT:80",
+		"port": "$PORT:49152",
 		"host": "192.168.192.16",
 		"securityLayer": "none"
 	}
