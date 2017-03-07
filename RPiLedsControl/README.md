@@ -11,7 +11,7 @@ To realize the simple web APIs service for the project, I used [Vapor](https://v
 
 ## 📖 Documentation
 
-Officialy there's not any documentation about Vapor ARM support, but after followed the [istructions](http://dev.iachieved.it/iachievedit/swift-3-0-on-raspberry-pi-2-and-3/) to install Swift 3 on a Raspbbery Pi 2/3, you can use the Vapor [documentation](https://vapor.github.io/documentation/getting-started/install-toolbox.html) and install it on your Rasbbery, also with Ubuntu 16.04.
+Officially there's not any documentation about Vapor ARM support, but after followed the [instructions](http://dev.iachieved.it/iachievedit/swift-3-0-on-raspberry-pi-2-and-3/) to install Swift 3 on a Raspberry Pi 2/3, you can use the Vapor [documentation](https://vapor.github.io/documentation/getting-started/install-toolbox.html) and install it on your Raspberry, also with Ubuntu 16.04.
 
 Visit the Vapor web framework's [documentation](http://docs.vapor.codes) for instructions on how to use this package and others information.
 
@@ -19,18 +19,18 @@ Visit the Vapor web framework's [documentation](http://docs.vapor.codes) for ins
 
 This web service manages two things:
 
-1. handles web requests and return a JSON if a request succeded
-2. controls the Rasbbery Pi GPIOs
+1. handles web requests and return a JSON if a request succeed
+2. controls the Raspberry Pi GPIOs
 
 Everything happen inside the **main.swift** file in `/Sources/App/`.
 
 ### 1. Web Service
 
-A simple web service with Vapor. For this firt version I decided to use a simple *Routing Parameters* solution, to send the commands to turn on/off the leds: `drop.get("cmd", ":id")`.
+A simple web service with Vapor. For this first version I decided to use a simple *Routing Parameters* solution, to send the commands to turn on/off the led: `drop.get("cmd", ":id")`.
 
 The route matches `/cmd/:id` where `:id` is an Int.
 
-For each valid get, the API returns a JSON with the `:id` and the status (on/off) of the two leds connected to the Raspberry Pi.
+For each valid get, the API returns a JSON with the `:id` and the status (on/off) of the two led connected to the Raspberry Pi.
 
 So, how to switch on the led connected to BCM 20? Simple:
 `http://hostname:port/cmd/1`.
@@ -115,7 +115,7 @@ func powerOff() {
 
 ## 🌍 Web service configuration
 
-For the purpose of this demo I configured only the development enviroment in `Config/development/server.json`:
+For the purpose of this demo I configured only the development environment in `Config/development/server.json`:
 ```json
 {
 	"http": {
