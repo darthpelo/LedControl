@@ -6,15 +6,42 @@ import Darwin.C
 
 import Vapor
 
-func returnJson(forCommand cmd: Int) -> JSON? {
-  let service = GPIOService.sharedInstance
-  
-  return try? JSON(node: [
-      "version": "1.0.4",
-      "command": "\(cmd)",
-      "yellow": "\(service.yellow)",
-      "green": "\(service.green)"
-      ])
+enum Err: Error {
+    case InternalError
+}
+
+private func typeCheck(value: Any?) throws -> String {
+  guard let value = value else { throw Err.InternalError }
+
+  if value is String {
+      return value as! String
+  } else if value is Int {
+      return "\(value)"
+  } else {
+      throw Err.InternalError
+  }
+}
+
+func returnJson(forCommand cmd: Any?) -> JSON? {
+  do {
+    let command = try typeCheck(value: cmd)
+
+    let service = GPIOService.sharedInstance
+
+    return try? JSON(node: [
+        "version": "1.0.4",
+        "command": command,
+        "yellow": "\(service.yellow)",
+        "green": "\(service.green)"
+        ])
+  } catch {
+    return try? JSON(node: [
+        "version": "1.0.4",
+        "command": "",
+        "yellow": "\(service.yellow)",
+        "green": "\(service.green)"
+        ])
+  }
 }
 
 // MARK: - Darwin / Xcode Support

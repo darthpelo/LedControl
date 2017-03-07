@@ -9,7 +9,7 @@
 import Foundation
 import Moya
 
-enum Led: Int {
+enum Leds: Int {
     case Off
     case YellowOn
     case YellowOff
