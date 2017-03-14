@@ -16,8 +16,8 @@ enum Command {
     static let Zero = 0
     static let One = 1
     static let Two = 2
-		static let Three = 3
-		static let Four = 4
+    static let Three = 3
+    static let Four = 4
     static let Five = 5
 }
 
@@ -65,7 +65,7 @@ final class GPIOService {
     case Command.Four:
         switchGreen(Command.Four)
     case Command.Five:
-        buttonLopp()
+        buttonLoop()
     default:
         throw GPIOError.InternalError
     }
@@ -95,7 +95,7 @@ final class GPIOService {
     gpioLib.switchOff(ports: list)
   }
 
-  fileprivate func buttonLopp() {
+  fileprivate func buttonLoop() {
     print("button")
     var counter = 0
     while(true) {

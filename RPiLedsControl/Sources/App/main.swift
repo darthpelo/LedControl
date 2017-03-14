@@ -44,4 +44,9 @@ drop.get("status") { request in
   return json
 }
 
+drop.put("places") { request in
+    print(request.json)
+    return "Hello, \(request.json)!"
+}
+
 drop.run()
