@@ -65,7 +65,7 @@ final class GPIOService {
     case Command.Four:
         switchGreen(Command.Four)
     case Command.Five:
-        buttonLoop()
+        buttonLoo { print("loop") }
     default:
         throw GPIOError.InternalError
     }
@@ -95,9 +95,9 @@ final class GPIOService {
     gpioLib.switchOff(ports: list)
   }
 
-  fileprivate func buttonLoop() {
-    print("button")
+  fileprivate func buttonLoop(handle: @escaping ()->Void) {
     var counter = 0
+    handle()
     while(true) {
       guard let value = button?.value else { return }
       if counter == 20 { return }
