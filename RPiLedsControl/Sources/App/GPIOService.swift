@@ -94,10 +94,17 @@ final class GPIOService {
 
   func buttonLoop(handle: @escaping ()->Void) {
     var counter = 0
+
     handle()
+
     while(true) {
       guard let value = button?.value else { return }
-      if counter == 10 { return }
+
+      if counter == 10 {
+        powerOff()
+        return
+      }
+
       if value == 0 {
         counter += 1
         gpioLib.switchOn(ports: [.P26])
@@ -106,6 +113,5 @@ final class GPIOService {
         gpioLib.switchOff(ports: [.P26])
       }
     }
-    powerOff()
   }
 }
