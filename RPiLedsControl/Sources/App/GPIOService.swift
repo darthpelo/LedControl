@@ -18,6 +18,7 @@ enum Command {
     static let Two = 2
 		static let Three = 3
 		static let Four = 4
+    static let Five = 5
 }
 
 enum GPIOError: Error {
@@ -36,9 +37,11 @@ final class GPIOService {
 
   private var ports: [GPIOName: GPIO] = [:]
   private let list: [GPIOName] = [.P20, .P26]
+  private var button: GPIO? = nil
 
   func setup() {
     self.ports = gpioLib.setupOUT(ports: [.P20, .P26], for: .RaspberryPi2)
+    self.button = gpioLib.setupIN(ports: [.P16], for: .RaspberryPi2)[.P16]
   }
 
   var yellow: Int {
@@ -61,6 +64,8 @@ final class GPIOService {
         switchGreen(Command.Three)
     case Command.Four:
         switchGreen(Command.Four)
+    case Command.Five:
+        buttonLopp()
     default:
         throw GPIOError.InternalError
     }
@@ -88,5 +93,22 @@ final class GPIOService {
 
   fileprivate func powerOff() {
     gpioLib.switchOff(ports: list)
+  }
+
+  fileprivate func buttonLopp() {
+    print("button")
+    var counter = 0
+    while(true) {
+      guard let value = button?.value else { return }
+      if counter == 20 { return }
+      if value == 0 {
+        counter += 1
+        gpioLib.switchOn(ports: [.P26])
+        GPIOLib.sharedInstance.waiting(for: 500) // 100ms
+      } else {
+        gpioLib.switchOff(ports: [.P26])
+      }
+    }
+    powerOff()
   }
 }
