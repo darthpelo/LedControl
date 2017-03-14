@@ -44,9 +44,20 @@ drop.get("status") { request in
   return json
 }
 
-drop.put("places") { request in
-    print(request.json)
-    return "Hello, \(request.json)!"
+drop.get("button") { request in
+  service.buttonLoop {
+    guard let json = returnJson(forCommand: nil) else {
+      throw Abort.badRequest
+    }
+
+    return json
+  }
+
+  guard let json = returnJson(forCommand: nil) else {
+    throw Abort.badRequest
+  }
+
+  return json
 }
 
 drop.run()

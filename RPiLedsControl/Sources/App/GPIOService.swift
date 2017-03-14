@@ -6,23 +6,22 @@ import Darwin.C
 
 // MARK: - Darwin / Xcode Support
 #if os(OSX)
-    private var O_SYNC: CInt { fatalError("Linux only") }
+private var O_SYNC: CInt { fatalError("Linux only") }
 #endif
 
 import SwiftyGPIO
 import SwiftGPIOLibrary
 
 enum Command {
-    static let Zero = 0
-    static let One = 1
-    static let Two = 2
-    static let Three = 3
-    static let Four = 4
-    static let Five = 5
+  static let Zero = 0
+  static let One = 1
+  static let Two = 2
+  static let Three = 3
+  static let Four = 4
 }
 
 enum GPIOError: Error {
-    case InternalError
+case InternalError
 }
 
 final class GPIOService {
@@ -55,19 +54,17 @@ final class GPIOService {
   func execute(command: Int) throws {
     switch(command) {
     case Command.Zero:
-        powerOff()
+      powerOff()
     case Command.One:
-        switchYellow(Command.One)
+      switchYellow(Command.One)
     case Command.Two:
-        switchYellow(Command.Two)
+      switchYellow(Command.Two)
     case Command.Three:
-        switchGreen(Command.Three)
+      switchGreen(Command.Three)
     case Command.Four:
-        switchGreen(Command.Four)
-    case Command.Five:
-        buttonLoo { print("loop") }
+      switchGreen(Command.Four)
     default:
-        throw GPIOError.InternalError
+      throw GPIOError.InternalError
     }
   }
 
@@ -95,16 +92,16 @@ final class GPIOService {
     gpioLib.switchOff(ports: list)
   }
 
-  fileprivate func buttonLoop(handle: @escaping ()->Void) {
+  func buttonLoop(handle: @escaping ()->Void) {
     var counter = 0
     handle()
     while(true) {
       guard let value = button?.value else { return }
-      if counter == 20 { return }
+      if counter == 10 { return }
       if value == 0 {
         counter += 1
         gpioLib.switchOn(ports: [.P26])
-        GPIOLib.sharedInstance.waiting(for: 500) // 100ms
+        GPIOLib.sharedInstance.waiting(for: 500)
       } else {
         gpioLib.switchOff(ports: [.P26])
       }
