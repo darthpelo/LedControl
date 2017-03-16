@@ -35,11 +35,11 @@ final class GPIOService {
   private let gpioLib = GPIOLib.sharedInstance
 
   private var ports: [GPIOName: GPIO] = [:]
-  private let list: [GPIOName] = [.P20, .P26]
+  private let list: [GPIOName] = [.P13, .P19, .P20, .P26]
   private var button: GPIO? = nil
 
   func setup() {
-    self.ports = gpioLib.setupOUT(ports: [.P20, .P26], for: .RaspberryPi2)
+    self.ports = gpioLib.setupOUT(ports: list, for: .RaspberryPi2)
     self.button = gpioLib.setupIN(ports: [.P16], for: .RaspberryPi2)[.P16]
   }
 
@@ -100,18 +100,18 @@ final class GPIOService {
     while(true) {
       guard let value = button?.value else { return }
 
-      if counter == 10 {
-        powerOff()
-        return
+      if value == 0 {
+        gpioLib.switchOff(ports: [.P19])
+        gpioLib.switchOff(ports: [.P26])
+        break
       }
 
-      if value == 0 {
-        counter += 1
-        gpioLib.switchOn(ports: [.P26])
-        GPIOLib.sharedInstance.waiting(for: 500)
-      } else {
-        gpioLib.switchOff(ports: [.P26])
-      }
+      gpioLib.switchOn(ports: [.P19])
+      gpioLib.switchOn(ports: [.P26])
+      GPIOLib.sharedInstance.waiting(for: 30)
+      gpioLib.switchOff(ports: [.P19])
+      gpioLib.switchOff(ports: [.P26])
+      GPIOLib.sharedInstance.waiting(for: 10)
     }
   }
 }
