@@ -98,7 +98,7 @@ final class GPIOService {
     handle()
 
     while(true) {
-      guard let value = button?.value else { return }
+      guard let value = button?.value else { return "ERROR" }
 
       if value == 0 {
         gpioLib.switchOff(ports: [.P19])
