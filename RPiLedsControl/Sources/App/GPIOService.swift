@@ -92,7 +92,7 @@ final class GPIOService {
     gpioLib.switchOff(ports: list)
   }
 
-  func buttonLoop(handle: @escaping ()->Void) {
+  func buttonLoop(handle: @escaping ()->Void) -> String {
     var counter = 0
 
     handle()
@@ -113,5 +113,7 @@ final class GPIOService {
       gpioLib.switchOff(ports: [.P26])
       GPIOLib.sharedInstance.waiting(for: 10)
     }
+
+    return "END"
   }
 }
