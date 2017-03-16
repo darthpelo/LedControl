@@ -102,15 +102,15 @@ final class GPIOService {
 
       if value == 0 {
         gpioLib.switchOff(ports: [.P19])
-        gpioLib.switchOff(ports: [.P26])
+        gpioLib.switchOff(ports: [.P13, .P20])
         break
       }
 
       gpioLib.switchOn(ports: [.P19])
-      gpioLib.switchOn(ports: [.P26])
-      GPIOLib.sharedInstance.waiting(for: 30)
+      gpioLib.switchOn(ports: [.P13, .P20])
+      GPIOLib.sharedInstance.waiting(for: 50)
       gpioLib.switchOff(ports: [.P19])
-      gpioLib.switchOff(ports: [.P26])
+      gpioLib.switchOff(ports: [.P13, .P20])
       GPIOLib.sharedInstance.waiting(for: 10)
     }
 
