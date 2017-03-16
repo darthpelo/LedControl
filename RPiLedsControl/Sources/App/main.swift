@@ -47,7 +47,10 @@ drop.get("status") { request in
 drop.get("button") { request in
   service.buttonLoop {
     guard let json = returnJson(forCommand: nil) else {
-      return "Error"
+      return try! JSON(node: [
+        "version": "1.1.0",
+        "error": "bad json"
+        ])
     }
 
     return json

@@ -11,6 +11,7 @@ private var O_SYNC: CInt { fatalError("Linux only") }
 
 import SwiftyGPIO
 import SwiftGPIOLibrary
+import Vapor
 
 enum Command {
   static let Zero = 0
@@ -92,8 +93,7 @@ final class GPIOService {
     gpioLib.switchOff(ports: list)
   }
 
-  func buttonLoop(handle: @escaping ()->Void) -> String {
-    var counter = 0
+  func buttonLoop(handle: @escaping () -> JSON) -> String {
 
     handle()
 

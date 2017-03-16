@@ -1,5 +1,5 @@
 #!/bin/bash
 echo Build
 vapor build
-echo Run LedsControl service
+echo Switch to root 
 sudo -i
