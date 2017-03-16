@@ -45,15 +45,13 @@ drop.get("status") { request in
 }
 
 drop.get("button") { request in
-  return service.buttonLoop {
-    return "END2"
-  }
+  service.buttonLoop {
+    guard let json = returnJson(forCommand: nil) else {
+      return "Error"
+    }
 
-  // guard let json = returnJson(forCommand: nil) else {
-  //   throw Abort.badRequest
-  // }
-  //
-  // return json
+    return json
+  }
 }
 
 drop.run()
