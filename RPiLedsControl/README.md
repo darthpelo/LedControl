@@ -26,7 +26,7 @@ Everything happen inside the **main.swift** file in `/Sources/App/`.
 
 ### 1. Web Service
 
-The server-side it's developed in `main.swift` using a Vapor template. For this first version I decided to use a simple *Routing Parameters* solution, to send the commands to turn on/off the led: `drop.get("cmd", ":id")`.
+The server-side it's developed in `main.swift` using a Vapor template. For this first version I decided to use a simple *Routing Parameters* solution, to send the commands to turn on/off the led `drop.get("cmd", ":id")` and to know the status of each led: `drop.get("status")`.
 
 The route matches `/cmd/:id` where `:id` is an Int and `/status`.
 
