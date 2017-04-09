@@ -11,9 +11,13 @@ To realize the simple web APIs service for the project, I used [Vapor](https://v
 
 ## 📖 Documentation
 
-Officially there's not any documentation about Vapor ARM support, but after followed the [instructions](http://dev.iachieved.it/iachievedit/swift-3-0-on-raspberry-pi-2-and-3/) to install Swift 3 on a Raspberry Pi 2/3, you can use the Vapor [documentation](https://vapor.github.io/documentation/getting-started/install-toolbox.html) and install it on your Raspberry, also with Ubuntu 16.04.
+### 🏎 Swift
+Right now (April 2017) I found some issue with Swift 3.1 for ARM and Vapor, so I suggest to follow **iachieved** [instructions](http://dev.iachieved.it/iachievedit/swift-3-0-on-raspberry-pi-2-and-3/) to install **Swift 3.0** on a Raspberry Pi 2/3. If during the process you cannot download the Swift 3 build artifact, go can found it here 👉 [link](http://47.186.11.166/job/Swift-3.0-Pi3-ARM-Incremental/).
 
-Visit the Vapor web framework's [documentation](http://docs.vapor.codes) for instructions on how to use this package and others information.
+### 💧 Vapor
+Officially there's not any documentation about Vapor ARM support and the Vapor [toolbox](https://vapor.github.io/documentation/getting-started/install-toolbox.html) Ubuntu package it's not in the **armhf** Ubuntu repository. The [suggestion](https://github.com/vapor/toolbox/issues/158#issuecomment-292478149) is compiling toolbox on your Raspberry.
+
+Visit the Vapor web framework's [documentation](http://docs.vapor.codes) for more instructions on how to use this package and others information.
 
 ## 💻 Code
 
@@ -152,5 +156,8 @@ For the purpose of this demo I configured only the development environment in `C
 
 As any other Vapor template, execute `vapor build` in the root folder of the project to build it.
 
-To run the server using the port 80, at the moment, it is necessary to run first `sudo -i`, go to the project folder and execute `vapor run`.
-If you want to use a another port, for example to run the service on your private network, you can use `sudo vapor run`. It's still necessary to run Vapor with root privilege to pilot the Raspberry GPIO.
+To run the server using the ports 80 and 8080, at the moment, it is necessary to run first `sudo -i`, go to the project folder and execute `vapor run`.
+If you want to use a another port, for example to run the service on your private network, you can use `vapor run`.
+
+### 👮 Permission issues
+If you have an permission error also is you're not using the ports 80 and 8080, you can find the solution on my Medium [post](https://medium.com/@darthpelo/swift-swift-everywhere-eba445ef2bcd) 🙂 
